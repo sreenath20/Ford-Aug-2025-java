@@ -9,8 +9,8 @@ public class Manager extends FordEmployee{
         this.bonus = bonus;
     }
 
-    @Override
-    public Double calculateSlary() {
-        return super.calculateSlary() + this.bonus;
-    }
+//    @Override
+//    public Double calculateSlary() {
+//        return super.calculateSlary() + this.bonus;
+//    }
 }

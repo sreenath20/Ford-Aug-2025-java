@@ -1,5 +1,7 @@
 package com.demo.day4;
 
+import java.util.Scanner;
+
 public class Driver {
 
     public static void main(String [] args){
@@ -45,5 +47,8 @@ public class Driver {
 
         FordEmployee fordEmployee = new Manager(5000.0,500.0);
         System.out.println(fordEmployee.calculateSlary());
+        FordEmployee fordEmployee1 = new FordEmployee(5000.0);
+        fordEmployee1.calculateSlary();
+        Scanner scanner = new Scanner(System.in);
     }
 }
