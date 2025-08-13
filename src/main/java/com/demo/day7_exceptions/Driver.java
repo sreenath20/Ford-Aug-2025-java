@@ -25,7 +25,17 @@ public class Driver {
             System.out.println(e.getMessage());
         } catch (ArrayIndexOutOfBoundsException e) { // specefic exception handling
             System.out.println(e.getMessage());
-        } finally { // deallocate resources i.e finally will always ges executed
+        } catch (RuntimeException e) { // generic exception handling
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } catch (Throwable t) {
+            System.out.println(t.getMessage());
+        }
+//        catch (Object obj){
+//
+//        }
+        finally { // deallocate resources i.e finally will always ges executed
             System.out.println("Finally will get executed always");
         }
 
