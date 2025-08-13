@@ -1,4 +1,4 @@
-package com.demo.day7.sub_package;
+package com.demo.sub_package;
 
 import com.demo.day7.Parent;
 
