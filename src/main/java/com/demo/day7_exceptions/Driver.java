@@ -1,6 +1,9 @@
 package com.demo.day7_exceptions;
 
+import java.util.Scanner;
+
 public class Driver {
+
     public static void main(String[] args) {
 
         System.out.println("Welcome to my application...");
@@ -39,6 +42,34 @@ public class Driver {
             System.out.println("Finally will get executed always");
         }
 
+        Scanner scanner = new Scanner(System.in);
+        // int option = scanner.nextInt();
+
+        // if exception not handled in main(),  unhandled exception will get forwarded to JVM
+
+        try {
+            first();
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+
         System.out.println("Reached end of my application..."); // normal program termination
+    }
+
+    static void first() {
+        second();
+        //        try{
+//            second();
+//        }
+//        catch (ArithmeticException e){
+//            System.out.println(e.getMessage());
+//        }
+        System.out.println("End of First function");
+    }
+
+    static void second() {
+        int i = 10 / 0; // if exception is not handled , automatically it will get forwarded to caller i.e first()
+
+        System.out.println("End of second function");
     }
 }
