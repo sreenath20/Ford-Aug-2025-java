@@ -43,6 +43,7 @@ public class SetDriver {
         namesSet.add("india");
         namesSet.add("Chennai");
         System.out.println(namesSet);
+
         Set<Employee> employeeSet = new HashSet<>();
         employeeSet.add(new Employee(6, "Name 5", 5000.0));
         employeeSet.add(new Employee(1, "Name 2", 4000.0));
@@ -76,7 +77,7 @@ public class SetDriver {
         // sort a set
         //Collections.sort(employeeSet);// only list can be sorted using Collections.sot()
         List<Employee> employeeList = new ArrayList<>(employeeSet);
-        Collections.sort(employeeList);
+       // Collections.sort(employeeList);
         System.out.println("Sorted emp list:"+ employeeList);
         //employeeSet.sort(); // Cannot resolve method 'sort' in 'Set'
         HashSet<Employee> employeeSetObj = (HashSet<Employee>) employeeSet;// down casting
@@ -114,5 +115,23 @@ public class SetDriver {
 // addAll()
         firstSet.addAll(secondSet);
         System.out.println("first set:"+firstSet);
+        // treeSet
+        // unique and sorted elements at any given point of time
+        Set<Integer> sortedSet = new TreeSet<>();
+        sortedSet.add(99);
+        sortedSet.add(22);
+        sortedSet.add(11);
+        sortedSet.add(1);
+        sortedSet.add(999);
+        System.out.println(sortedSet);
+        employeeSet.add(new Employee(111,"India 111", 99000.0));
+        employeeSet.add(new Employee(99,"India", 99000.0));
+
+        System.out.println("Emp set"+employeeSet);
+        Set<Employee> sortedEmployeeSet = new TreeSet<>(employeeSet);
+        System.out.println(sortedEmployeeSet);
+        // new data member will modify underlying binary tree
+        sortedEmployeeSet.add(new Employee(55,"My sample data ", 777.7));
+        System.out.println(sortedEmployeeSet);
     }
 }
