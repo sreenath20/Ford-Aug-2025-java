@@ -1,6 +1,8 @@
 package com.demo.day11_streams;
 
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class StreamDriver {
     public static void main(String[] args) {
@@ -13,10 +15,12 @@ public class StreamDriver {
         names.add("Japan");
         // get length of all names?
         // MAP api = transform data
+        Function<String,Integer> lengthFunction = (name) -> name.length();
+        Consumer<Integer> intConsumer = (data) -> System.out.println(data);
         names
                 .stream()
-                .map((name) -> name.length())
-                .forEach((data) -> System.out.println(data));
+                .map(lengthFunction)
+                .forEach(intConsumer);
 
         for(String name : names){
 
@@ -65,6 +69,13 @@ public class StreamDriver {
         System.out.println("int list is not modified" + integerList);
         Collections.sort(integerList);
         System.out.println("After collection sort() :"+ integerList);
+        // find the square of all numbers in a list
+        Function<Integer,Integer> squareFunction = (n)->n*n;
+
+        integerList // 1. source
+                .stream() // stream instance
+                .map(squareFunction) // intermediate operation
+                .forEach((n)-> System.out.println(n)); // terminal
 
     }
 }
