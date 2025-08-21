@@ -101,6 +101,8 @@ public class StreamDriver {
         System.out.println("After 5% hike" + employeListWithHike);
         System.out.println("Original list:" + employeeList);
 
+        // reverse order
+        employeeList.stream().sorted(Comparator.comparing(Employee::getId).reversed()).forEach(System.out::println);
     }
 
     static void display(Supplier<Employee> employeeSupplier) {
