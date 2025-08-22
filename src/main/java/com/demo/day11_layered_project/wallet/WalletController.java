@@ -1,5 +1,7 @@
 package com.demo.day11_layered_project.wallet;
 
+import java.util.Collection;
+
 public class WalletController {
     public static void main(String[] args) {//throws WalletWithdrawException {
 
@@ -46,6 +48,13 @@ public class WalletController {
             System.out.println("All wallets:" + walletService.getAllCustomerWallets());
         } catch (WalletException e) {
             //throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+        }
+        try {
+            Collection<Wallet> balanceBetweenWallets =  walletService.findAllWalletsHavingBalanceBetween(0.0,1000.0);
+            System.out.println("Wallets between range:" + balanceBetweenWallets);
+        } catch (WalletException e) {
+           // throw new RuntimeException(e);
             System.out.println(e.getMessage());
         }
 

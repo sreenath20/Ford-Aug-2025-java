@@ -87,14 +87,23 @@ public class WalletServiceImpl implements WalletService {
         return List.of();
     }
 
+    // check if name exists as a substring e.g ford exists in "Ford india" & "ford USA"
     @Override
     public Collection<Wallet> findWalletsByName(String name) throws WalletException {
+
         return List.of();
     }
 
     @Override
     public Collection<Wallet> findAllWalletsHavingBalanceBetween(Double fromAmount, Double toAmount) throws WalletException {
-        return List.of();
+
+        Collection<Wallet> allWallets = this.userWalletsMap.values();
+        if (allWallets.size() == 0)
+            throw new WalletException("No user wallet account found,size is 0");
+
+        return allWallets.stream()
+                .filter((w) -> w.getBalance() >= fromAmount && w.getBalance() <= toAmount)
+                .toList();
     }
 
     @Override
