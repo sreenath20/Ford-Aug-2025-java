@@ -40,7 +40,7 @@ public class WalletServiceImpl implements WalletService {
         // check for sufficent balance
         Wallet foundWallet = this.userWalletsMap.get(emailId);
         if (foundWallet.getBalance() < amount)
-            throw new WalletWithdrawException("Insufficent balance, re-try! current balance:" + foundWallet.getBalance());
+            throw new WalletWithdrawException("Withdraw failed ! , Insufficient balance, re-try! current balance:" + foundWallet.getBalance());
         Double balance = foundWallet.getBalance();
         foundWallet.setBalance(balance - amount);
         return foundWallet.getBalance();
@@ -48,7 +48,23 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Boolean transferFunds(String fromEmailId, String toEmailId, Double amount) throws WalletException {
-        return null;
+        // validate amount
+        if (amount < 1)
+            throw new WalletException("Transfer amount should be min 1Rs");
+        // check if from & to account exist
+        if (!this.userWalletsMap.containsKey(fromEmailId))
+            throw new WalletException("From account does not exits:" + fromEmailId);
+        if (!this.userWalletsMap.containsKey(toEmailId))
+            throw new WalletException("To account does not exits:" + toEmailId);
+        Wallet fromWallet = this.userWalletsMap.get(fromEmailId);
+        Wallet toWallet = this.userWalletsMap.get(toEmailId);
+        Double fromBalance = fromWallet.getBalance();
+        if (fromBalance < amount)
+            throw new WalletException("Transfer failed ! from account has Insufficient balance, current balance :" + fromBalance);
+        //fund  transfer logic goes here
+        fromWallet.setBalance(fromBalance - amount);
+        toWallet.setBalance(toWallet.getBalance() + amount);
+        return true;
     }
 
     @Override

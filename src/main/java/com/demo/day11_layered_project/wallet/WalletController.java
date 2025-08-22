@@ -39,6 +39,15 @@ public class WalletController {
             System.out.println(e.getMessage());
         }
 
+        try {
+            walletService.transferFunds("name1@gmail.com", "name2@gmail.com", 600.0);
+
+            walletService.transferFunds("name1@gmail.com", "name2@gmail.com", -575.0);
+            System.out.println("All wallets:" + walletService.getAllCustomerWallets());
+        } catch (WalletException e) {
+            //throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("***** Thank you for using Online wallet papplication *****");
     }
