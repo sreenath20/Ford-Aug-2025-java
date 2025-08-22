@@ -76,4 +76,29 @@ public class WalletServiceImpl implements WalletService {
     public Collection<Wallet> getAllCustomerWallets() throws WalletException {
         return this.userWalletsMap.values();
     }
+
+    @Override
+    public Wallet userLogin(String userEmailId, String password) throws WalletException {
+        return null;
+    }
+
+    @Override
+    public Collection<Wallet> sortCustomerWallets(String order) throws WalletException {
+        return List.of();
+    }
+
+    @Override
+    public Collection<Wallet> findWalletsByName(String name) throws WalletException {
+        return List.of();
+    }
+
+    @Override
+    public Collection<Wallet> findAllWalletsHavingBalanceBetween(Double fromAmount, Double toAmount) throws WalletException {
+        return List.of();
+    }
+
+    @Override
+    public Boolean updateWalletPassword(String emailId, String oldPassword, String newPassword) throws WalletException {
+        return null;
+    }
 }
