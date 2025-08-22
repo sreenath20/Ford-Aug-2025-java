@@ -23,12 +23,27 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Double addFundsToWalletByEmailId(String emailId, Double amount) throws WalletException {
-        return 0.0;
+        // check if account exists
+        if (!this.userWalletsMap.containsKey(emailId))
+            throw new WalletException("Account does not exists for email:" + emailId);
+        // do validation of data in controller layer [amount must be +ve and multiple of 100]
+        Wallet foundWallet = this.userWalletsMap.get(emailId);
+        foundWallet.setBalance(foundWallet.getBalance() + amount);
+        return foundWallet.getBalance();
     }
 
     @Override
     public Double withdrawFromWalletByEmailId(String emailId, Double amount) throws WalletWithdrawException {
-        return 0.0;
+        // check if  account  exist
+        if (!this.userWalletsMap.containsKey(emailId))
+            throw new WalletWithdrawException("Account does not exists for email:" + emailId);
+        // check for sufficent balance
+        Wallet foundWallet = this.userWalletsMap.get(emailId);
+        if (foundWallet.getBalance() < amount)
+            throw new WalletWithdrawException("Insufficent balance, re-try! current balance:" + foundWallet.getBalance());
+        Double balance = foundWallet.getBalance();
+        foundWallet.setBalance(balance - amount);
+        return foundWallet.getBalance();
     }
 
     @Override
